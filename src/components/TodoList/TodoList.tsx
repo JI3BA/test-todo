@@ -1,13 +1,14 @@
-import {Container, IconButton, TextField} from "@mui/material";
-import {BoxSx} from "../Boxes/BoxSx/BoxSx";
-import {AddCircle} from "@mui/icons-material";
+import {Container, Grid} from "@mui/material";
 import {TodoTask} from "../TodoTask/TodoTask";
 import {useDispatch, useSelector} from "react-redux";
-import {NotesState, removeTaskAC} from "../../store/tasksReducer";
+import {removeTaskAC, TaskType} from "../../store/tasksReducer";
+import {AppRootState} from "../../store";
+import {AddItem} from "../AddItem/AddItem";
+import {Filter} from "../Filter/Filter";
 
 
 export const TodoList = () => {
-    const tasks = useSelector<NotesState, NotesState['tasks']>(state => state.tasks)
+    const tasks = useSelector<AppRootState, TaskType[]>(state => state.tasks.tasks)
     const dispatch = useDispatch()
 
     const removeTask = (taskId: number) => {
@@ -15,19 +16,19 @@ export const TodoList = () => {
     }
 
     return(
-        <>
-            <Container maxWidth="sm">
-                <BoxSx>
-                    <TextField id="outlined-basic" label="Note" size='small' variant="outlined" />
-                    <IconButton color="primary" size='large'>
-                        <AddCircle fontSize="inherit" />
-                    </IconButton>
-                </BoxSx>
+            <Container fixed>
+                <Grid container sx={{ width: '370px', display: 'flex', justifyContent: 'center'}}>
+                    <AddItem />
+                </Grid>
 
-                <BoxSx>
-                    {tasks.map(task => <TodoTask key={task.id} task={task} removeTask={() => removeTask(task.id)}/>)}
-                </BoxSx>
+                <Grid container sx={{ width: '345px', display: 'flex', justifyContent: 'center'}}>
+                    <Filter />
+                </Grid>
+
+                {tasks.length
+                    ? tasks.map(task => <TodoTask key={task.id} task={task} removeTask={removeTask}/>)
+                    : <p>Notes not found</p>
+                }
             </Container>
-        </>
     )
 }
