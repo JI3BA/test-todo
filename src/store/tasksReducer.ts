@@ -11,9 +11,7 @@ export type TasksState = {
 
 const defaultState = {
     tasks:[
-        {id: 1, task: 'Hello my #name', isDone: false, tags: ['name']},
-        {id: 2, task: 'Where are #you going?', isDone: true, tags: ['you']},
-        {id: 3, task: 'Learn #TS and #JS', isDone: false, tags: ['TS', 'JS']}
+
     ]
 }
 
@@ -35,7 +33,7 @@ export const tasksReducer = (state: TasksState = defaultState, action: ActionsTy
         case 'ADD-TASK':
             return {
                 ...state,
-                tasks: [{id: Date.now(), task: action.task, isDone:false, tags: []}, ...state.tasks]
+                tasks: [{id: Date.now(), task: action.task, isDone:false, tags: [...action.tags]}, ...state.tasks]
             }
         case 'CHANGE-TASK-STATUS':
             return {
@@ -56,8 +54,8 @@ export const tasksReducer = (state: TasksState = defaultState, action: ActionsTy
 export const removeTaskAC = (taskId: number) => {
     return { type: 'REMOVE-TASK', taskId} as const
 }
-export const addTaskAC = (task: string) => {
-    return { type: 'ADD-TASK', task} as const
+export const addTaskAC = (task: string, tags: string[]) => {
+    return { type: 'ADD-TASK', task, tags} as const
 }
 
 export const changeTaskStatusAC = (taskId: number, isDone: boolean) => {
