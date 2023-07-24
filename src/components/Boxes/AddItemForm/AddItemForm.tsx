@@ -9,11 +9,12 @@ export const AddItemForm: FC<AddItemFormType> = ({children}) => {
     return (
         <Box
             sx={{
-                width: '100%',
+                width: '450px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                p: 2,
+                marginLeft: '30px',
+                p: 1,
             }}
         >
             {children}
