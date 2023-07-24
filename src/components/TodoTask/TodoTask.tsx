@@ -6,12 +6,12 @@ import {changeTaskStatusAC, changeTaskAC, TaskType} from "../../store/tasksReduc
 import {useDispatch} from "react-redux";
 import Box from "@mui/material/Box";
 
-type TodoTask = {
+type TodoTaskType = {
     task: TaskType,
     removeTask: (taskId: number) => void,
 }
 
-export const TodoTask: FC<TodoTask> = ({task, removeTask}) => {
+export const TodoTask: FC<TodoTaskType> = ({task, removeTask}) => {
     const dispatch = useDispatch()
     const onClickHandler = () => removeTask(task.id)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +27,7 @@ export const TodoTask: FC<TodoTask> = ({task, removeTask}) => {
             <Grid
                 container
                 direction="row"
-                justifyContent="flex-start"
-                alignItems="center"
-                width='30%'
+                width='100%'
                 border='1px solid gray'
                 borderRadius='5px'
                 margin='5px 0'
