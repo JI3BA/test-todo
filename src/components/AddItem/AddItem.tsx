@@ -41,6 +41,9 @@ export const AddItem = () => {
                        variant="outlined"
                        value={valueTask}
                        onKeyPress={onKeyPressHandler}
+                       sx={{
+                           width: '370px'
+                       }}
             />
 
             <IconButton color="primary" size='large' onClick={addTask}>
