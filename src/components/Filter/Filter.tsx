@@ -42,7 +42,7 @@ export const Filter: FC<FilterType> = ({tags, currentTags, setCurrentTags}) => {
 
     return (
         <div>
-            <FormControl sx={{ m: 1, width: 300 }} size='small'>
+            <FormControl sx={{ m: 1, width: '450px' }} size='small'>
                 <InputLabel id="demo-multiple-checkbox-label">Tags</InputLabel>
                 <Select
                     labelId="demo-multiple-checkbox-label"
