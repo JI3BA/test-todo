@@ -31,7 +31,16 @@ export const TodoList = () => {
     }
 
     return(
-            <Container fixed sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Container fixed sx={{
+                width: '470px',
+                margin: '10px auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                border: '1px solid #000000',
+                borderRadius: '5px'
+            }}>
+
                 <Grid container sx={{ width: '450px', display: 'flex', justifyContent: 'center'}}>
                     <AddItem />
                 </Grid>
