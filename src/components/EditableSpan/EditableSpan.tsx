@@ -12,9 +12,9 @@ type EditableSpanPropsType = {
 }
 
 export const EditableSpan: FC<EditableSpanPropsType> = ({value,onChange, id}) => {
-    let [editMode, setEditMode] = useState(false);
-    let [title, setTitle] = useState(value);
-    let [error, setError] = useState<string | null>(null)
+    const [editMode, setEditMode] = useState(false);
+    const [title, setTitle] = useState(value);
+    const [error, setError] = useState<string | null>(null)
     const dispatch = useDispatch()
 
     const changeTask = () => {
