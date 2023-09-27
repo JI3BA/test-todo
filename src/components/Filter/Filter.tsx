@@ -43,14 +43,14 @@ export const Filter: FC<FilterType> = ({tags, currentTags, setCurrentTags}) => {
     return (
         <div>
             <FormControl sx={{ m: 1, width: '450px' }} size='small'>
-                <InputLabel id="demo-multiple-checkbox-label">Tags</InputLabel>
+                <InputLabel id="demo-multiple-checkbox-label">Filtered by tags</InputLabel>
                 <Select
                     labelId="demo-multiple-checkbox-label"
                     id="demo-multiple-checkbox"
                     multiple
                     value={currentTags}
                     onChange={handleChange}
-                    input={<OutlinedInput label="Tags" />}
+                    input={<OutlinedInput label="Filtered by tags" />}
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
