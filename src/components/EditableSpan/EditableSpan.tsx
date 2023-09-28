@@ -1,9 +1,9 @@
 import TextField from '@mui/material/TextField/TextField';
 import React, {ChangeEvent, FC, useState, KeyboardEvent} from 'react';
 import Box from "@mui/material/Box";
-import {useDispatch} from "react-redux";
-import {changeTaskAC} from "../../store/tasksReducer";
-import {Fade, Tooltip} from "@mui/material";
+import { useDispatch } from "react-redux";
+import { changeTaskAC } from "../../store/tasksReducer";
+import { Fade, Tooltip } from "@mui/material";
 
 
 type EditableSpanPropsType = {
