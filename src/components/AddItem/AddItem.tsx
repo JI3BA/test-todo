@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux";
 
 export const AddItem = () => {
     const [valueTask , setValueTask] = useState<string>('')
-    let [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<string | null>(null)
     const dispatch = useDispatch()
 
     const addTask = () => {
