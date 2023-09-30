@@ -1,4 +1,4 @@
-import {Container, Grid} from "@mui/material";
+import {Container} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {removeTaskAC, TaskType} from "../../store/tasksReducer";
 import {AppRootState} from "../../store";
@@ -6,6 +6,7 @@ import {AddItem} from "../AddItem/AddItem";
 import {Filter} from "../Filter/Filter";
 import {useEffect, useState, useMemo} from "react";
 import {TableTasks} from "../Table/TableTasks";
+import {TodoListBox} from "../Boxes/TodoListBox/TodoListBox";
 
 
 export const TodoList = () => {
@@ -41,13 +42,13 @@ export const TodoList = () => {
                 borderRadius: '5px'
             }}>
 
-                <Grid container sx={{ width: '450px', display: 'flex', justifyContent: 'center'}}>
+                <TodoListBox>
                     <AddItem />
-                </Grid>
+                </TodoListBox>
 
-                <Grid container sx={{ width: '450px', display: 'flex', justifyContent: 'center'}}>
+                <TodoListBox>
                     <Filter tags={tagsContainer} currentTags={currentFilterTags} setCurrentTags={setCurrentFilterTags} />
-                </Grid>
+                </TodoListBox>
 
                 <TableTasks filterNote={filterNote} removeTask={removeTask}/>
 
