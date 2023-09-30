@@ -4,16 +4,20 @@ import {Provider} from "react-redux";
 import {store, persistor} from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
 import { AddList } from "./components/AddList/AddList";
+import {Container} from "@mui/material";
 
 
 function App() {
   return (
       <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-              <div>
+              <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                   <AddList />
-                  <TodoList />
-              </div>
+
+                  <Container sx={{display: 'flex'}}>
+                      <TodoList />
+                  </Container>
+              </Container>
           </PersistGate>
       </Provider>
   );
