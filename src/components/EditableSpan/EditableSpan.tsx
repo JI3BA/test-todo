@@ -56,7 +56,7 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({value,onChange, id}) =>
         ? <TextField variant="outlined"
                      value={title} error={!!error} onChange={changeTitle} autoFocus onBlur={activateViewMode} onKeyPress={onKeyPressHandler} />
         : <Tooltip title="Double click to edit" aria-label="add" arrow placement="top-start" TransitionComponent={Fade} TransitionProps={{ timeout: 400 }}>
-            <Box component='p' sx={{ maxWidth: '100%', width: '100%', wordWrap: 'break-word', cursor: 'pointer'}} onDoubleClick={activateEditMode}>{value.split(' ').map((word, index) => word.includes('#') ? <Box component='span' key={index} color='green'> {word} </Box> : ` ${word} `)}
+            <Box component='p' sx={{ maxWidth: '100%', width: '100%', wordWrap: 'break-word', cursor: 'pointer'}} onDoubleClick={activateEditMode}>{value.split(' ').map((word, index) => word.includes('#') ? <Box component='span' key={index} sx={{color: 'green', fontWeight: '600'}}> {word} </Box> : ` ${word} `)}
             </Box>
           </Tooltip>
 }
