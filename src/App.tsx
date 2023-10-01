@@ -8,19 +8,19 @@ import {Container} from "@mui/material";
 
 
 function App() {
-  return (
-      <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-              <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                  <AddList />
+    return (
+          <Provider store={store}>
+              <PersistGate loading={null} persistor={persistor}>
+                  <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                      <AddList />
 
-                  <Container sx={{display: 'flex'}}>
-                      <TodoList />
+                      <Container sx={{display: 'flex'}}>
+                          <TodoList />
+                      </Container>
                   </Container>
-              </Container>
-          </PersistGate>
-      </Provider>
-  );
+              </PersistGate>
+          </Provider>
+      );
 }
 
 export default App;
