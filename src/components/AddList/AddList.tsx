@@ -6,7 +6,7 @@ import {AddItemForm} from "../Boxes/AddItemForm/AddItemForm";
 export const AddList = () => {
     return(
         <AddItemForm>
-            <TextField id="outlined-basic"
+            <TextField id="add-list"
                        label="ListName"
                        size='small'
                        variant="outlined"
