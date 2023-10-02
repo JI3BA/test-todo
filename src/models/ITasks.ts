@@ -1,5 +1,5 @@
 export interface ITasks {
-    id: number,
+    id: string,
     task: string,
     isDone: boolean,
     tags: string[]
