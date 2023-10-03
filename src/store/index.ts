@@ -10,9 +10,11 @@ import { persistStore,
     PURGE,
     REGISTER,} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import {todoListReducer} from "./todoListReducer";
 
 const RootReducer = combineReducers({
     tasks: tasksReducer,
+    todoLists: todoListReducer
 })
 
 const persistConfig = {
