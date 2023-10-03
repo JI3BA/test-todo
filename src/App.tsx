@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TodoList} from "./components/TodoList/TodoList";
-import {Provider} from "react-redux";
-import {store, persistor} from "./store";
-import { PersistGate } from 'redux-persist/integration/react'
+import {useSelector} from "react-redux";
+import {AppRootState} from "./store";
 import { AddList } from "./components/AddList/AddList";
 import {Container} from "@mui/material";
 import {v1} from "uuid";
@@ -11,37 +10,17 @@ import {ITasksState} from "./models/ITasks";
 
 
 function App() {
-    const todolistId1 = v1();
-    const todolistId2 = v1();
-
-    const [todoLists, setTodoLists] = useState<ITodoList[]>([
-        {id: todolistId1, title: "What to learn"},
-        {id: todolistId2, title: "What to buy"}
-    ])
-
-    const [tasks, setTasks] = useState<ITasksState>({
-        [todolistId1]: [
-            {id: v1(), task: "HTML&CSS", isDone: true, tags: []},
-            {id: v1(), task: "JS #language", isDone: true, tags: ['language']}
-        ],
-        [todolistId2]: [
-            {id: v1(), task: "Milk and #bread", isDone: true, tags: ['bread']},
-            {id: v1(), task: "React Book", isDone: true, tags: []}
-        ]
-    });
+    const todoLists = useSelector<AppRootState, ITodoList[]>(state => state.todoLists)
+    const tasks = useSelector<AppRootState, ITasksState>(state => state.tasks)
 
     return (
-          <Provider store={store}>
-              <PersistGate loading={null} persistor={persistor}>
-                  <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                      <AddList />
+        <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <AddList />
 
-                      <Container sx={{display: 'flex'}}>
-                          <TodoList />
-                      </Container>
-                  </Container>
-              </PersistGate>
-          </Provider>
+            <Container sx={{display: 'flex'}}>
+                {todoLists.map(tl => <TodoList key={v1()} todoListsId={tl.id} title={tl.title} tasks={tasks[tl.id]} />)}
+            </Container>
+        </Container>
       );
 }
 
