@@ -8,7 +8,6 @@ import {v1} from "uuid";
 import {ITodoList} from "./models/ITodoList";
 import {ITasksState} from "./models/ITasks";
 
-
 function App() {
     const todoLists = useSelector<AppRootState, ITodoList[]>(state => state.todoLists)
     const tasks = useSelector<AppRootState, ITasksState>(state => state.tasks)
