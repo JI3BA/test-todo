@@ -6,8 +6,11 @@ export type RemoveTaskActionType = ReturnType<typeof  removeTaskAC>
 export type AddTaskActionType = ReturnType<typeof addTaskAC>
 export type changeTaskStatusType = ReturnType<typeof changeTaskStatusAC>
 export type changeTaskType = ReturnType<typeof changeTaskAC>
+export type AddListTaskType = ReturnType<typeof addListTaskAC>
+export type RemoveListTaskType = ReturnType<typeof removeListTaskAC>
 
-type ActionsType = RemoveTaskActionType | AddTaskActionType | changeTaskType | changeTaskStatusType
+type ActionsType = RemoveTaskActionType | AddTaskActionType | changeTaskType | changeTaskStatusType | AddListTaskType
+| RemoveListTaskType
 
 const tasks = {
         [todolistId1]: [
@@ -25,40 +28,55 @@ export const tasksReducer = (state: ITasksState = tasks, action: ActionsType): I
         case 'REMOVE-TASK':
             return {
                 ...state,
-                [action.todolistId]: state[action.todolistId].filter(t => t.id !== action.taskId)
+                [action.todoListId]: state[action.todoListId].filter(t => t.id !== action.taskId)
             }
         case 'ADD-TASK':
             return {
                 ...state,
-                [action.todolistId]: [{id: v1(), task: action.task, isDone: false, tags: [...action.tags]}, ...state[action.todolistId]]
+                [action.todoListId]: [{id: v1(), task: action.task, isDone: false, tags: [...action.tags]}, ...state[action.todoListId]]
             }
         case 'CHANGE-TASK-STATUS':
             return {
                 ...state,
-                [action.todolistId]: state[action.todolistId].map(t => t.id === action.taskId ? {...t, isDone: action.isDone} : t)
+                [action.todoListId]: state[action.todoListId].map(t => t.id === action.taskId ? {...t, isDone: action.isDone} : t)
             }
         case 'CHANGE-TASK':
             return {
                 ...state,
-                [action.todolistId]: state[action.todolistId].map(t => t.id === action.taskId ? {...t, task: action.task, tags: [...action.tags]} : t)
+                [action.todoListId]: state[action.todoListId].map(t => t.id === action.taskId ? {...t, task: action.task, tags: [...action.tags]} : t)
             }
+        case 'ADD_LIST_TASK':
+            return {
+                ...state,
+                [action.todoListId]: []
+            }
+        case 'REMOVE_LIST_TASK':
+            const {[action.todoListId]: [], ...rest} = state
+            return {...rest}
         default:
             return state
     }
 }
 
 
-export const removeTaskAC = (todolistId: string, taskId: string) => {
-    return { type: 'REMOVE-TASK', todolistId, taskId} as const
+export const removeTaskAC = (todoListId: string, taskId: string) => {
+    return { type: 'REMOVE-TASK', todoListId, taskId} as const
 }
-export const addTaskAC = (todolistId: string, task: string, tags: string[]) => {
-    return { type: 'ADD-TASK',todolistId, task, tags} as const
-}
-
-export const changeTaskStatusAC = (todolistId: string, taskId: string, isDone: boolean) => {
-    return { type: 'CHANGE-TASK-STATUS',todolistId, taskId, isDone} as const
+export const addTaskAC = (todoListId: string, task: string, tags: string[]) => {
+    return { type: 'ADD-TASK',todoListId, task, tags} as const
 }
 
-export const changeTaskAC = (todolistId: string, taskId: string, task: string, tags: string[]) => {
-    return { type: 'CHANGE-TASK',todolistId, taskId, task, tags} as const
+export const changeTaskStatusAC = (todoListId: string, taskId: string, isDone: boolean) => {
+    return { type: 'CHANGE-TASK-STATUS',todoListId, taskId, isDone} as const
+}
+
+export const changeTaskAC = (todoListId: string, taskId: string, task: string, tags: string[]) => {
+    return { type: 'CHANGE-TASK',todoListId, taskId, task, tags} as const
+}
+
+export const addListTaskAC = (todoListId: string) => {
+    return { type: 'ADD_LIST_TASK',todoListId} as const
+}
+export const removeListTaskAC = (todoListId: string) => {
+    return { type: 'REMOVE_LIST_TASK',todoListId} as const
 }
