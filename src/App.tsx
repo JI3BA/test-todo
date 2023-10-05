@@ -16,7 +16,7 @@ function App() {
         <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <AddList />
 
-            <Container sx={{display: 'flex'}}>
+            <Container sx={{display: 'flex', flexWrap: 'wrap'}}>
                 {todoLists.map(tl => <TodoList key={v1()} todoListsId={tl.id} title={tl.title} tasks={tasks[tl.id]} />)}
             </Container>
         </Container>
