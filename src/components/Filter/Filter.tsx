@@ -32,12 +32,8 @@ export const Filter: FC<FilterType> = ({tags, currentTags, setCurrentTags}) => {
 
 
     const handleChange = (event: SelectChangeEvent<typeof currentTags>) => {
-        const {
-            target: { value },
-        } = event;
-        setCurrentTags(
-            typeof value === 'string' ? value.split(',') : value,
-        );
+        const {target: { value }} = event;
+        setCurrentTags(typeof value === 'string' ? value.split(',') : value);
     };
 
     return (
