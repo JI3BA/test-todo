@@ -5,14 +5,14 @@ import { useDispatch } from "react-redux";
 import { changeTaskAC } from "../../store/tasksReducer";
 import { Fade, Tooltip } from "@mui/material";
 
-
 type EditableSpanPropsType = {
+    todoListsId: string,
     value: string
     onChange: (newValue: string) => void,
-    id: number
+    id: string
 }
 
-export const EditableSpan: FC<EditableSpanPropsType> = ({value,onChange, id}) => {
+export const EditableSpan: FC<EditableSpanPropsType> = ({todoListsId, value,onChange, id}) => {
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState(value);
     const [error, setError] = useState<string | null>(null)
@@ -23,7 +23,8 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({value,onChange, id}) =>
             const tagsFiltered: string[] = []
             title.split(' ').filter(tag => tag.includes('#')).map(tag => !tagsFiltered.includes(tag) ? tagsFiltered.push(tag) : null)
 
-            dispatch(changeTaskAC(id, title, tagsFiltered))
+
+            dispatch(changeTaskAC(todoListsId, id, title, tagsFiltered))
             setTitle('')
         } else {
             setError("Title is required");
