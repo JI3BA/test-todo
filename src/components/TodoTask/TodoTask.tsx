@@ -2,24 +2,27 @@ import {Checkbox, Grid, IconButton} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 import {EditableSpan} from "../EditableSpan/EditableSpan";
 import {ChangeEvent, FC} from "react";
-import {changeTaskStatusAC, changeTaskAC, TaskType} from "../../store/tasksReducer";
+import {changeTaskStatusAC, changeTaskAC} from "../../store/tasksReducer";
 import {useDispatch} from "react-redux";
 import Box from "@mui/material/Box";
+import {ITasks} from "../../models/ITasks";
+import {v1} from "uuid";
 
 type TodoTaskType = {
-    task: TaskType,
-    removeTask: (taskId: number) => void,
+    todoListsId: string,
+    task: ITasks,
+    removeTask: (todoListId: string, taskId: string) => void,
 }
 
-export const TodoTask: FC<TodoTaskType> = ({task, removeTask}) => {
+export const TodoTask: FC<TodoTaskType> = ({todoListsId, task, removeTask}) => {
     const dispatch = useDispatch()
-    const onClickHandler = () => removeTask(task.id)
+    const onClickHandler = () => removeTask(todoListsId, task.id)
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let newIsDoneValue = e.currentTarget.checked;
-        dispatch(changeTaskStatusAC(task.id, newIsDoneValue))
+        dispatch(changeTaskStatusAC(todoListsId, task.id, newIsDoneValue))
     }
     const onTitleChangeHandler = (newValue: string) => {
-        dispatch(changeTaskAC(task.id, newValue, task.tags))
+        dispatch(changeTaskAC(todoListsId, task.id, newValue, task.tags))
     }
 
     return(
@@ -46,7 +49,7 @@ export const TodoTask: FC<TodoTaskType> = ({task, removeTask}) => {
                     width='76%'
                     padding='10px 0'
                 >
-                    <EditableSpan id={task.id} value={task.task} onChange={onTitleChangeHandler} />
+                    <EditableSpan todoListsId={todoListsId} id={task.id} value={task.task} onChange={onTitleChangeHandler} />
                     <Box component='div' sx={{display: 'flex'}}>Tags:
                         {task.tags.map((tag,index) =>
                             <Box key={index} component='span' sx={{padding: '0 3px'}}> {tag} </Box>)}
