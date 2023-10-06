@@ -21,10 +21,9 @@ export const EditableSpan: FC<EditableSpanPropsType> = ({todoListsId, value,onCh
     const changeTask = () => {
         if (title.trim() !== "") {
             const tagsFiltered: string[] = []
-            title.split(' ').filter(tag => tag.includes('#')).map(tag => !tagsFiltered.includes(tag) ? tagsFiltered.push(tag) : null)
+            title.split(' ').filter(tag => tag.includes('#')).map(tag => !tagsFiltered.includes(tag) ? tagsFiltered.push(tag.toLowerCase()) : null)
 
-
-            dispatch(changeTaskAC(todoListsId, id, title, tagsFiltered))
+            dispatch(changeTaskAC(todoListsId, id, title, tagsFiltered.filter((tag,index) => index === tagsFiltered.indexOf(tag))))
             setTitle('')
         } else {
             setError("Title is required");
