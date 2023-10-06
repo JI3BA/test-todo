@@ -15,10 +15,10 @@ type ActionsType = RemoveTaskActionType | AddTaskActionType | changeTaskType | c
 const tasks = {
         [todolistId1]: [
             {id: v1(), task: "HTML&CSS", isDone: true, tags: []},
-            {id: v1(), task: "JS #language", isDone: false, tags: ['language']}
+            {id: v1(), task: "JS #language", isDone: false, tags: ['#language']}
         ],
         [todolistId2]: [
-            {id: v1(), task: "Milk and #bread", isDone: false, tags: ['bread']},
+            {id: v1(), task: "Milk and #bread", isDone: false, tags: ['#bread']},
             {id: v1(), task: "React Book", isDone: true, tags: []}
         ]
 }
