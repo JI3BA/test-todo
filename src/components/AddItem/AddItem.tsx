@@ -21,7 +21,7 @@ export const AddItem: FC<AddItemType> = ({todoListsId}) => {
             valueTask.split(' ').filter(tag => tag.includes('#')).map(tag => !tagsFiltered.includes(tag) ? tagsFiltered.push(tag.toLowerCase()) : null)
 
 
-            dispatch(addTaskAC(todoListsId, valueTask, tagsFiltered))
+            dispatch(addTaskAC(todoListsId, valueTask, tagsFiltered.filter((tag,index) => index === tagsFiltered.indexOf(tag))))
             setValueTask('')
         } else {
             setError("Title is required");
