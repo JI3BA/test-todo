@@ -1,6 +1,6 @@
-import {ITasksState} from "../models/ITasks";
-import {v1} from "uuid";
-import {todolistId1, todolistId2} from "./todoListReducer";
+import { ITasksState } from "../models/ITasks";
+import { v1 } from "uuid";
+import { todolistId1, todolistId2 } from "./todoListReducer";
 
 export type RemoveTaskActionType = ReturnType<typeof  removeTaskAC>
 export type AddTaskActionType = ReturnType<typeof addTaskAC>
