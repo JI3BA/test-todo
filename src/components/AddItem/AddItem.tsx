@@ -38,7 +38,7 @@ export const AddItem: FC<AddItemType> = ({todoListsId}) => {
     return(
         <AddItemForm>
             <TextField id={v1()}
-                       label="Note"
+                       label={!error ? 'Note' : 'Incorrect Note'}
                        error={!!error}
                        onChange={event => setValueTask(event.target.value)}
                        size='small'
