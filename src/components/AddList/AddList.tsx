@@ -34,7 +34,7 @@ export const AddList = () => {
     return(
         <AddItemForm>
             <TextField id="add-list"
-                       label="ListName"
+                       label={!error ? 'ListName' : 'Incorrect ListName'}
                        size='small'
                        value={valueList}
                        error={!!error}
